@@ -112,12 +112,14 @@ class Game():
         for block in self.snake:
             input.append(block[0] / self.size)
             input.append(block[1] / self.size)
-        for _ in range(len(self.snake), 45 - len(self.snake)):
+        for _ in range(47 - len(self.snake)):
             input.append(0)
             input.append(0)
         input.append(self.apple[0] / self.size)
         input.append(self.apple[1] / self.size)
         input.extend(to_categorical([self.direction])[0])
+        
+        assert len(input) == 100, "Input length is not 100"
         return input
 
 if __name__ == '__main__':

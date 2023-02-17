@@ -15,7 +15,7 @@ class Model(nn.Module):
     """
     def __init__(self):
         super(Model, self).__init__()
-        self.fc1 = nn.Linear(91, 100)
+        self.fc1 = nn.Linear(100, 100)
         self.fc2 = nn.Linear(100, 100)
         self.fc3 = nn.Linear(100, 4)
         self.relu = nn.ReLU()
