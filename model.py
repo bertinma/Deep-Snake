@@ -15,9 +15,9 @@ class Model(nn.Module):
     """
     def __init__(self):
         super(Model, self).__init__()
-        self.fc1 = nn.Linear(11, 100)
-        self.fc2 = nn.Linear(100, 30)
-        self.fc3 = nn.Linear(30, 50)
+        self.fc1 = nn.Linear(11, 50)
+        self.fc2 = nn.Linear(50, 50)
+        self.fc3 = nn.Linear(50, 50)
         self.fc4 = nn.Linear(50, 3)
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=-1)
@@ -25,7 +25,7 @@ class Model(nn.Module):
     def forward(self, x):
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))
-        x = self.relu(self.fc3(x))
+        # x = self.relu(self.fc3(x))
         x = self.softmax(self.fc4(x))
         return x
 
