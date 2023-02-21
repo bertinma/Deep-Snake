@@ -8,7 +8,7 @@ import numpy as np
 
 myModel = model.Model().float()
 
-EPOCHS = 200
+EPOCHS = 100
 GAMMA = 0.9
 directions_letters = ['d', 's', 'q', 'z']
 direction_str = ['right', 'down', 'left', 'up']
@@ -165,6 +165,6 @@ for epoch in tqdm(range(EPOCHS)):
             optimizer.step()
     if np.mean(last_results[:-10]) > best_mean_score:
         # save model 
-        torch.save(myModel.state_dict(), "model.pt")
+        torch.save(myModel.state_dict(), "models/model.pt")
         print(results)
         # plot_results(results)

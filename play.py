@@ -6,7 +6,7 @@ import random
 import numpy as np
 
 myModel = model.Model().float()
-myModel.load_state_dict(torch.load("model.pt"))
+myModel.load_state_dict(torch.load("models/model.pt"))
 
 GAMMA = 0.9
 directions_letters = ['d', 's', 'q', 'z']
