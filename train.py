@@ -4,10 +4,11 @@ import torch
 from tqdm import tqdm
 import torch.nn.functional as F
 import random
+import numpy as np
 
 myModel = model.Model().float()
 
-EPOCHS = 200000
+EPOCHS = 200
 GAMMA = 0.9
 directions_letters = ['d', 's', 'q', 'z']
 direction_str = ['right', 'down', 'left', 'up']
@@ -73,13 +74,15 @@ def plot_results(results):
             plt.scatter(i, r, c='black', s=1)
     plt.show()
 
+last_results = []
+best_mean_score = 0 
 for epoch in tqdm(range(EPOCHS)):
     if epoch > 0:
         print(game.game_over, steps)
     game = Game(10)
     steps = 0
     tmp = []
-    while not game.game_over and steps < 100:
+    while not game.game_over and steps < 1000:
         old_state = game.get_state()
         # print("Model input : ", old_state)
         old_state_tensor = torch.tensor(old_state, dtype=torch.float32, requires_grad=True)
@@ -139,7 +142,7 @@ for epoch in tqdm(range(EPOCHS)):
         print("\n\n")
 
     results.append(tmp)
-
+    last_results.append(game.score)
 
     if len(memory) > 1000:
         memory = random.sample(memory, 100)
@@ -160,7 +163,8 @@ for epoch in tqdm(range(EPOCHS)):
             loss = F.mse_loss(output, target_f).requires_grad_(True)
             loss.backward()
             optimizer.step()
-# save model 
-torch.save(myModel.state_dict(), "model.pt")
-print(results)
-# plot_results(results)
+    if np.mean(last_results[:-10]) > best_mean_score:
+        # save model 
+        torch.save(myModel.state_dict(), "model.pt")
+        print(results)
+        # plot_results(results)

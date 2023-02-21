@@ -193,16 +193,7 @@ class Game():
             (self.direction == 2 and ((self.snake[0][0] == self.size - 1) or any([self.snake[0] == (s[0] - 1, s[1]) for s in self.snake[3:]]))) or
             (self.direction == 3 and ((self.snake[0][1] == 0) or any([self.snake[0] == (s[0], s[1] + 1) for s in self.snake[3:]]))),
 
-            # (self.direction == 0 and self.snake[0][0] >= self.size - 2) or
-            # (self.direction == 1 and self.snake[0][1] <= 1) or
-            # (self.direction == 2 and self.snake[0][0] <= 1) or
-            # (self.direction == 3 and self.snake[0][1] >= self.size - 2), 
-            # # Danger left
-            # (self.direction == 0 and self.snake[0][0] <= 1) or
-            # (self.direction == 1 and self.snake[0][1] >= self.size - 2) or
-            # (self.direction == 2 and self.snake[0][0] >= self.size - 2) or
-            # (self.direction == 3 and self.snake[0][1] <= 1),
-            # Move direction
+
             self.direction == 0,
             self.direction == 1,
             self.direction == 2,
@@ -222,9 +213,9 @@ class Game():
             return 10
         else:
             if compute_distance(self.snake[0], self.apple) < compute_distance(self.snake[1], self.apple):
-                return 1
+                return 2
             else:
-                return -1
+                return -2
 
     def compute_next_state(self, new_direction):
         # if not (new_direction + self.direction) % 2 == 0:
