@@ -2,3 +2,4 @@
 .DS_Store
 .vscode 
 model.pt
+__pycache__
