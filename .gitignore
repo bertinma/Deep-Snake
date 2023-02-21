@@ -1,5 +1,5 @@
 .python-version 
 .DS_Store
 .vscode 
-model.pt
+*.pt
 __pycache__
