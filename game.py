@@ -179,20 +179,25 @@ class Game():
             # Danger straight
             (self.direction == 0 and ((self.snake[0][1] == self.size - 1) or any([self.snake[0] == (s[0], s[1] - 1) for s in self.snake[3:]]))) or
             (self.direction == 1 and ((self.snake[0][0] == self.size - 1) or any([self.snake[0] == (s[0] - 1, s[1]) for s in self.snake[3:]]))) or
-            (self.direction == 2 and ((self.snake[0][1] == 0) or any([self.snake[0] == (s[0], s[1] + 1) for s in self.snake[3:]]))) or  
+            (self.direction == 1 and ((self.snake[0][1] == 0) or any([self.snake[0] == (s[0], s[1] + 1) for s in self.snake[3:]]))) or  
             (self.direction == 3 and ((self.snake[0][0] == 0) or any([self.snake[0] == (s[0] + 1, s[1]) for s in self.snake[3:]]))),
 
             # Danger right
             (self.direction == 0 and ((self.snake[0][0] == self.size - 1) or any([self.snake[0] == (s[0] - 1, s[1]) for s in self.snake[3:]]))) or
             (self.direction == 1 and ((self.snake[0][1] == 0) or any([self.snake[0] == (s[0], s[1] + 1) for s in self.snake[3:]]))) or
-            (self.direction == 2 and ((self.snake[0][0] == 0) or any([self.snake[0] == (s[0] + 1, s[1]) for s in self.snake[3:]]))) or
+            (self.direction == 1 and ((self.snake[0][0] == 0) or any([self.snake[0] == (s[0] + 1, s[1]) for s in self.snake[3:]]))) or
             (self.direction == 3 and ((self.snake[0][1] == self.size - 1) or any([self.snake[0] == (s[0], s[1] - 1) for s in self.snake[3:]]))),
             # Danger left
             (self.direction == 0 and ((self.snake[0][0] == 0) or any([self.snake[0] == (s[0] + 1, s[1]) for s in self.snake[3:]]))) or
             (self.direction == 1 and ((self.snake[0][1] == self.size - 1) or any([self.snake[0] == (s[0], s[1] - 1) for s in self.snake[3:]]))) or
-            (self.direction == 2 and ((self.snake[0][0] == self.size - 1) or any([self.snake[0] == (s[0] - 1, s[1]) for s in self.snake[3:]]))) or
+            (self.direction == 1 and ((self.snake[0][0] == self.size - 1) or any([self.snake[0] == (s[0] - 1, s[1]) for s in self.snake[3:]]))) or
             (self.direction == 3 and ((self.snake[0][1] == 0) or any([self.snake[0] == (s[0], s[1] + 1) for s in self.snake[3:]]))),
 
+            # Apple forward
+            (self.direction == 0 and self.apple == (self.snake[0][0], self.snake[0][1] + 1)) or
+            (self.direction == 1 and self.apple == (self.snake[0][0] + 1, self.snake[0][1])) or
+            (self.direction == 2 and self.apple == (self.snake[0][0], self.snake[0][1] - 1)) or
+            (self.direction == 3 and self.apple == (self.snake[0][0] - 1, self.snake[0][1])),
 
             self.direction == 0,
             self.direction == 1,

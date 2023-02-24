@@ -15,7 +15,7 @@ This is a simple implementation of a reinforcement learning agent that learns to
 
 ```console 
 docker build -t snake_rl .
-docker run -it --rm snake_rl -v ${pwd}models:/app/models
+docker run -it snake_rl -v models:/app/models
 ```
 
 ## 3. Train the model

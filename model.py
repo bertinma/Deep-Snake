@@ -15,7 +15,7 @@ class Model(nn.Module):
     """
     def __init__(self):
         super(Model, self).__init__()
-        self.fc1 = nn.Linear(11, 50)
+        self.fc1 = nn.Linear(12, 50)
         self.fc2 = nn.Linear(50, 50)
         self.fc3 = nn.Linear(50, 50)
         self.fc4 = nn.Linear(50, 3)

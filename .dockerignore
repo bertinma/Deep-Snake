@@ -1,0 +1,7 @@
+# models/
+.dockerignore 
+.gitignore 
+__pycache__/
+.python-version
+Dockerfile 
+README.md

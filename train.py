@@ -8,11 +8,11 @@ import numpy as np
 
 myModel = model.Model().float()
 
-EPOCHS = 100
+EPOCHS = 1000
 GAMMA = 0.9
 directions_letters = ['d', 's', 'q', 'z']
 direction_str = ['right', 'down', 'left', 'up']
-optimizer = torch.optim.Adam(myModel.parameters(), lr=0.0005)
+optimizer = torch.optim.Adam(myModel.parameters(), lr=0.0001)
 memory = []
 results = []
 
@@ -165,6 +165,7 @@ for epoch in tqdm(range(EPOCHS)):
             optimizer.step()
     if np.mean(last_results[:-10]) > best_mean_score:
         # save model 
+        best_mean_score = np.mean(last_results[:-10])
         torch.save(myModel.state_dict(), "models/model.pt")
         print(results)
         # plot_results(results)

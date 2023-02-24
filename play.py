@@ -55,11 +55,17 @@ def get_direction_with_action(action, direction):
 game = Game(10)
 while not game.game_over:
     old_state = game.get_state()
-    # print("Model input : ", old_state)
     old_state_tensor = torch.tensor(old_state, dtype=torch.float32, requires_grad=True)
+    if old_state[0] == 1:
+        print("Forward danger")
+    if old_state[1] == 1:
+        print("Right danger")
+    if old_state[2] == 1:
+        print("Left danger")
+    print("\n\n")
+
     with torch.no_grad():
         q_values = myModel(old_state_tensor)
-    # game.step(output)
     
     action = torch.argmax(q_values)
     curent_q_value = q_values[action]
@@ -72,5 +78,4 @@ while not game.game_over:
     next_state = game.compute_next_state(direction)
     reward = game.get_reward()
     game.display_plate()
-    print("\n\n")
 print("Game over !")
